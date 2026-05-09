@@ -1,0 +1,1 @@
+# projeto-exchange.auth-service
