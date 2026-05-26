@@ -6,6 +6,8 @@ metadata:
     app: auth
 data:
   JWT_HTTP_ONLY: "true"
+  JWT_SECURE: "false"
+  JWT_SAME_SITE: "Lax"
 ---
 apiVersion: v1
 kind: Secret
@@ -25,6 +27,11 @@ metadata:
     app: auth
 spec:
   replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 0
+      maxUnavailable: 1
   selector:
     matchLabels:
       app: auth
@@ -35,7 +42,7 @@ spec:
     spec:
       containers:
         - name: auth
-          image: projetomicro/auth:latest
+          image: gunicacio/auth:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
@@ -46,11 +53,11 @@ spec:
                 name: auth-secrets
           resources:
             requests:
-              memory: "256Mi"
-              cpu: "100m"
+              memory: "128Mi"
+              cpu: "50m"
             limits:
-              memory: "512Mi"
-              cpu: "500m"
+              memory: "384Mi"
+              cpu: "300m"
 ---
 apiVersion: v1
 kind: Service

@@ -21,6 +21,12 @@ public class AuthService {
     @Value("${store.jwt.httpOnly}")
     private Boolean httpOnly;
 
+    @Value("${store.jwt.secure}")
+    private Boolean secure;
+
+    @Value("${store.jwt.sameSite}")
+    private String sameSite;
+
     @Autowired
     private AccountController accountController;
 
@@ -59,6 +65,14 @@ public class AuthService {
 
     public Boolean getHttpOnly() {
         return httpOnly;
+    }
+
+    public Boolean getSecure() {
+        return secure;
+    }
+
+    public String getSameSite() {
+        return sameSite;
     }
 
     public String solveToken(String token) {

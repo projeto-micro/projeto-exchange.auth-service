@@ -10,6 +10,8 @@ store:
     secretKey: ${JWT_SECRET_KEY}
     duration: 86400000 # 24 hours in milliseconds
     httpOnly: ${JWT_HTTP_ONLY}
+    secure: ${JWT_SECURE:false}
+    sameSite: ${JWT_SAME_SITE:Lax}
 
 logging:
   level:
